@@ -71,3 +71,17 @@ Each team must:
 ---
 
 *Course project - Dr. Alramzana Navaz, CSIT Department.ADU*
+
+
+## Project Team
+
+| Name | Branch |
+|------|--------|
+| Fatimetou Agha | fatima-dev |
+| Aysha Alshooli | aysha-dev |
+| Bushra Salam Seram Baluch | bushra-dev |
+| Latifa Alsulaim | latifa-dev |
+
+Course: SWE 473 — Software Maintenance and Evolution
+Instructor: Dr. Alramzana Navaz
+Semester: Spring 2025–26
