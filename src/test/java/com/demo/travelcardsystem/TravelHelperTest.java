@@ -7,6 +7,7 @@ import com.demo.travelcardsystem.repository.InMemoryCardTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("java:S2187")
 @Component
 public class TravelHelperTest {
 

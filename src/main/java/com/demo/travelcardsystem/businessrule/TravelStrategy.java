@@ -1,5 +1,6 @@
 package com.demo.travelcardsystem.businessrule;
 
+import com.demo.travelcardsystem.constant.FareConstants;
 import com.demo.travelcardsystem.constant.TransportType;
 import com.demo.travelcardsystem.constant.Zone;
 import com.demo.travelcardsystem.entity.ZonePair;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.DoubleConsumer;
 
 @Data
 @Component
@@ -19,7 +21,7 @@ public class TravelStrategy {
     @NonNull
     private RuleCollection ruleCollection;
 
-    public Consumer<Double> anyWhereInZoneOneStrategy = chargeableAmount -> {
+    private DoubleConsumer anyWhereInZoneOneStrategy = chargeableAmount -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
 
@@ -31,7 +33,7 @@ public class TravelStrategy {
 
     };
 
-    public Consumer<Double> anyOneZoneOutsideZoneOneStrategy = chargeableAmount -> {
+    private DoubleConsumer anyOneZoneOutsideZoneOneStrategy = chargeableAmount -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
 
@@ -42,7 +44,7 @@ public class TravelStrategy {
         ruleCollection.addRules(rule);
     };
 
-    public Consumer<Double> anyTwoZoneIncludingZoneOneStrategy = chargeableAmount -> {
+    private DoubleConsumer anyTwoZoneIncludingZoneOneStrategy = chargeableAmount -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
 
@@ -55,7 +57,7 @@ public class TravelStrategy {
         ruleCollection.addRules(rule);
     };
 
-    public  Consumer<Double> anyTwoZoneExcludingZoneOneStrategy = chargeableAmount -> {
+    private DoubleConsumer anyTwoZoneExcludingZoneOneStrategy = chargeableAmount -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
 
@@ -66,7 +68,7 @@ public class TravelStrategy {
         ruleCollection.addRules(rule);
     };
 
-    public Consumer<Double> anyThreeZoneStrategy = chargeableAmount -> {
+    private DoubleConsumer anyThreeZoneStrategy = chargeableAmount -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
 
@@ -75,7 +77,7 @@ public class TravelStrategy {
         ruleCollection.addRules(rule);
     };
 
-    public BiConsumer<Double, TransportType> anyJourneyByBus = (chargeableAmount, transType) -> {
+    private BiConsumer<Double, TransportType> anyJourneyByBus = (chargeableAmount, transType) -> {
         Rule rule = new Rule();
         rule.setChargeableFare(chargeableAmount);
         rule.setTransportType(transType);
@@ -86,14 +88,14 @@ public class TravelStrategy {
     };
 
     public RuleCollection loadAllBusinessRules() {
-        anyWhereInZoneOneStrategy.accept(2.50);
-        anyOneZoneOutsideZoneOneStrategy.accept(2.00);
-        anyTwoZoneIncludingZoneOneStrategy.accept(3.00);
-        anyTwoZoneExcludingZoneOneStrategy.accept(2.25);
-        anyThreeZoneStrategy.accept(3.20);
-        anyJourneyByBus.accept(1.80, TransportType.BUS);
+        anyWhereInZoneOneStrategy.accept(FareConstants.ZONE_ONE_FARE);
+        anyOneZoneOutsideZoneOneStrategy.accept(FareConstants.ONE_ZONE_OUTSIDE_FARE);
+        anyTwoZoneIncludingZoneOneStrategy.accept(FareConstants.TWO_ZONE_INCLUDING_ONE_FARE);
+        anyTwoZoneExcludingZoneOneStrategy.accept(FareConstants.TWO_ZONE_EXCLUDING_ONE_FARE);
+        anyThreeZoneStrategy.accept(FareConstants.THREE_ZONE_FARE);
+        anyJourneyByBus.accept(FareConstants.BUS_FARE, TransportType.BUS);
 
-        this.ruleCollection.setMaxFare(3.20);
+        this.ruleCollection.setMaxFare(FareConstants.MAX_FARE);
 
         return this.ruleCollection;
     }
