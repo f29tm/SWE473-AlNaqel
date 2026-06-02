@@ -85,3 +85,16 @@ Each team must:
 Course: SWE 473 — Software Maintenance and Evolution
 Instructor: Dr. Alramzana Navaz
 Semester: Spring 2025–26
+
+---
+
+## Task 4 Update
+
+Task 4 completed – Reverse Engineering and Architecture Analysis by Aysha Alshooli.
+
+This task included:
+- reverse engineering the system architecture
+- identifying software design patterns
+- analysing maintainability improvements
+- documenting layered architecture, Strategy, Observer, Repository, DTO, Builder, and Dependency Injection patterns
+- preparing architecture screenshots and supporting documentation
